@@ -22,18 +22,15 @@ public class SearchInsert {
             return 0;
         }
         int left = 0;
-        int right = nums.length-1;
-        while (left <= right){
-            int index = (left + right) / 2;
-            if(target == nums[index]){
-                return index;
-            }
-            if(target > nums[index]){
-                left = index + 1;
-            }else{
-                right = index - 1;
+        int right = nums.length;
+        while(left < right){
+            int mid = (right + left)/2;
+            if(target <= nums[mid]){
+                right = mid;
+            } else{
+                left = mid+1;
             }
         }
-        return right+1;
+        return left;
     }
 }
