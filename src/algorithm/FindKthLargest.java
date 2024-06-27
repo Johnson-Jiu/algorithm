@@ -7,16 +7,17 @@ package algorithm;
  */
 public class FindKthLargest {
     public int findKthLargest(int[] nums, int k) {
-        quickSearch(nums, 0, nums.length - 1);
-        return nums[k-1];
+        int target = quickSearch(nums, 0, nums.length - 1, k);
+        return target == -1? nums[k-1] : target;
 
     }
 
-    private void quickSearch(int[] nums, int left, int right){
+    private int quickSearch(int[] nums, int left, int right, int target){
         int i = left;
         int j = right;
+
         if(left > right){
-            return;
+            return -1;
         }
         int temp = nums[left];
         while (left < right){
@@ -33,7 +34,11 @@ public class FindKthLargest {
             nums[right] = nums[left];
         }
         nums[left] = temp;
-        quickSearch(nums, i, left-1);
-        quickSearch(nums, left+1, j);
+        if(left == target-1){
+            return temp;
+        }
+        quickSearch(nums, i, left-1, target);
+        quickSearch(nums, left+1, j, target);
+        return -1;
     }
 }
