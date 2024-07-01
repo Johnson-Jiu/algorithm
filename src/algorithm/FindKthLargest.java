@@ -34,6 +34,7 @@ public class FindKthLargest {
             nums[right] = nums[left];
         }
         nums[left] = temp;
+        // 提前返回指定坐标的数据
         if(left == target-1){
             return temp;
         }
